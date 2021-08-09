@@ -1,0 +1,20 @@
+version: "3"
+
+services: 
+  webservice:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - "./src:/var/www/html"
+    links: 
+      - database
+  database:
+    image: mysql:5.7
+    volumes:
+      - "/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "example"
+
+      
